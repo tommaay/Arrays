@@ -111,7 +111,7 @@ void arr_insert(Array *arr, char *element, int index)
   if (index >= arr->count)
   {
     printf("Not a valid index. Index cannot be greater than or equal to the value of count.");
-    return NULL;
+    return exit(1);
   }
 
   // Resize the array if the number of elements is over capacity
@@ -127,7 +127,9 @@ void arr_insert(Array *arr, char *element, int index)
   }
 
   // Copy the element and add it to the array
-  arr->elements[index] = element;
+  char *new_element = NULL;
+  strcpy(new_element, element);
+  arr->elements[index] = new_element;
 
   // Increment count by 1
   arr->count++;
@@ -164,7 +166,8 @@ void arr_remove(Array *arr, char *element)
 
   // Search for the first occurence of the element and remove it.
   // Don't forget to free its memory!
-  int index;
+  int index = 0;
+
   for (int i = 0; i < arr->count; i++)
   {
     if (arr->elements[i] == element)
